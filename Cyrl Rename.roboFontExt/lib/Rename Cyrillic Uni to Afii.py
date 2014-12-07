@@ -27,11 +27,14 @@ def getNameAndSuffix (glyphname):
 
 def getListOfCyrillicGlyphs (font):
 	cyrllist = []
-	if font != None:
-		for glyphname in font.keys():
-			gname, gsuffix = getNameAndSuffix(glyphname)
-			if isCyrillic(gname):
-				cyrllist.append(gname + gsuffix)
+	# print font
+	# if font != None:
+	# print 'we there'
+	for glyphname in font.keys():
+		gname, gsuffix = getNameAndSuffix(glyphname)
+		# print gname, gsuffix
+		if isCyrillic(gname):
+			cyrllist.append(gname + gsuffix)
 			# for glyphname in font.keys():
 			# uni = font[glyphname].unicode
 			# 	if uni != None:
@@ -151,6 +154,7 @@ class CyrillicExchangerTool(BaseWindowController):
 		glist = []
 		self.w.ListGlyphs.set([])
 		listCyrlGlyphs = getListOfCyrillicGlyphs(CurrentFont())
+		# print listCyrlGlyphs
 		if self.direction == toAfii:
 			glist = getListAfiiNames(listCyrlGlyphs)
 		else:
@@ -181,7 +185,8 @@ class CyrillicExchangerTool(BaseWindowController):
 		# if self.direction == toUni:
 		for pair in displayListOfGlyphs:
 			print pair[AVAIL_CYRL], '>>', pair[RENAME_TO]
-			font.renameGlyph(pair[AVAIL_CYRL], pair[RENAME_TO], True, True, True)
+			if not font.has_key(pair[RENAME_TO]):
+				font.renameGlyph(pair[AVAIL_CYRL], pair[RENAME_TO], True, True, True)
 
 
 
