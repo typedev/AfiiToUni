@@ -13,7 +13,7 @@ from mojo.events import addObserver, removeObserver
 toAfii = 0
 toUni = 1
 
-AVAIL_CYRL = "Available Cyrl glyphs"
+AVAIL_CYRL = "Cyrl glyphs"
 RENAME_TO = "Rename to"
 
 
@@ -128,7 +128,7 @@ def getListAfiiNames (listOfCyrlGlyphs):
 class CyrillicExchangerTool(BaseWindowController):
 	def __init__ (self):
 		self.direction = toAfii
-		self.w = FloatingWindow((250, 400), title = 'Cyrl')
+		self.w = FloatingWindow((250, 400), title = 'Cyrl Rename')
 
 		displayListOfGlyphs = []
 		# listCyrlGlyphs = getListOfCyrillicGlyphs(CurrentFont())
